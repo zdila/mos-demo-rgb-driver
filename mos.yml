@@ -1,0 +1,49 @@
+author: Martin Ždila <m.zdila@gmail.com>
+description: RGB LED Driver
+version: 1.0
+
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+
+# Optional. List of tags for online search.
+tags:
+  - c
+
+# List of files / directories with C sources. No slashes at the end of dir names.
+sources:
+  - src
+
+# List of dirs. Files from these dirs will be copied to the device filesystem
+filesystem:
+  - fs
+
+config_schema:
+  - ["debug.level", 2]
+  - ["wifi.ap.enable", false]
+  - ["wifi.sta.enable", true]
+  # - ["wifi.sta.ssid", "..."]
+  # - ["wifi.sta.pass", "..."]
+  - ["dns_sd.enable", true]
+  - ["dns_sd.host_name", "rgb"]
+  - ["mqtt.enable", true]
+  - ["mqtt.server", "iot.eclipse.org"]
+
+libs:
+  - origin: https://github.com/mongoose-os-libs/boards
+  - origin: https://github.com/mongoose-os-libs/ca-bundle
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/rpc-service-fs
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/wifi
+  # - origin: https://github.com/mongoose-os-libs/http-server
+  - origin: https://github.com/mongoose-os-libs/dns-sd
+  - origin: https://github.com/mongoose-os-libs/pwm
+  - origin: https://github.com/mongoose-os-libs/mqtt
+  - origin: https://github.com/mongoose-os-libs/mjs
+
+# Used by the mos tool to catch mos binaries incompatible with this file format
+manifest_version: 2017-09-29
+
+build_vars:
+  # FS_SIZE: 500000
