@@ -26,7 +26,7 @@ RPC.addHandler('setRGB', function (args) {
 });
 
 function isValidBand(v) {
-  typeof v === 'number' && v >= 0 && v <= 1;
+  return typeof v === 'number' && v >= 0 && v <= 1;
 }
 
 function freq(v) {
