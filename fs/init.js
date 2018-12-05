@@ -1,18 +1,38 @@
 load('api_pwm.js');
-load('api_mqtt.js');
+load('api_config.js');
+load('api_rpc.js');
 
-MQTT.sub('sk.eastcode.demo/rgb', function (conn, topic, msg) {
-  print(msg);
-  let rgb = JSON.parse(msg);
-  PWM.set(5, freq(rgb.r), duty(rgb.r));
-  PWM.set(4, freq(rgb.g), duty(rgb.g));
-  PWM.set(14, freq(rgb.b), duty(rgb.b));
+let pins = {
+  r: Cfg.get('rgb.pin.r'),
+  g: Cfg.get('rgb.pin.g'),
+  b: Cfg.get('rgb.pin.b')
+};
+
+RPC.addHandler('setRGB', function (args) {
+  if (
+    typeof args === 'object'
+    && isValidBand(args.r)
+    && isValidBand(args.g)
+    && isValidBand(args.b)
+  ) {
+    PWM.set(pins.r, freq(args.r), duty(args.r));
+    PWM.set(pins.g, freq(args.g), duty(args.g));
+    PWM.set(pins.b, freq(args.b), duty(args.b));
+
+    return null;
+  } else {
+    return { error: -32602, message: 'Bad request. Expected: {"r":<R>,"g":<G>,"b":<B>}' };
+  }
 });
+
+function isValidBand(v) {
+  typeof v === 'number' && v >= 0 && v <= 1;
+}
 
 function freq(v) {
   return duty(v) < 0.005 ? 0 : 400;
 }
 
 function duty(v) {
-  return Math.pow(v / 255, 3);
+  return v * v * v;
 }
