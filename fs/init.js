@@ -9,6 +9,7 @@ let pins = {
 };
 
 RPC.addHandler('setRGB', function (args) {
+  print("RGB", JSON.stringify(args));
   if (
     typeof args === 'object'
     && isValidBand(args.r)
@@ -21,6 +22,7 @@ RPC.addHandler('setRGB', function (args) {
 
     return null;
   } else {
+    print("Invalid parameters.");
     return { error: -32602, message: 'Bad request. Expected: {"r":<R>,"g":<G>,"b":<B>}' };
   }
 });
