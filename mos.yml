@@ -29,7 +29,7 @@ config_schema:
   - ["mqtt.enable", true]
   - ["mqtt.server", "mqtt.freemap.sk"]
   - ["mqtt.user", "demo"]
-  - ["mqtt.pass", "********"]
+  - ["mqtt.pass", "demo123"]
   - ["mqtt.ssl_ca_cert", "ca.pem"]
   - ["rpc.mqtt.sub_wc", false]
   - ["rgb.pin.r", "d", 0, { "title": "Red Pin" }]
