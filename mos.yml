@@ -27,11 +27,14 @@ config_schema:
   - ["dns_sd.enable", true]
   - ["dns_sd.host_name", "rgb"]
   - ["mqtt.enable", true]
-  - ["mqtt.server", "iot.eclipse.org"]
+  - ["mqtt.server", "mqtt.freemap.sk"]
+  - ["mqtt.user", "martin"]
+  - ["mqtt.pass", "mqb0n0tt"]
+  - ["mqtt.ssl_ca_cert", "ca.pem"]
   - ["rpc.mqtt.sub_wc", false]
-  - ["rgb.pin.r", "d", 5, {"title": "Red Pin"}]
-  - ["rgb.pin.g", "d", 4, {"title": "Green Pin"}]
-  - ["rgb.pin.b", "d", 14, {"title": "Blue Pin"}]
+  - ["rgb.pin.r", "d", 0, { "title": "Red Pin" }]
+  - ["rgb.pin.g", "d", 2, { "title": "Green Pin" }]
+  - ["rgb.pin.b", "d", 4, { "title": "Blue Pin" }]
 
 libs:
   - origin: https://github.com/mongoose-os-libs/boards
@@ -41,7 +44,6 @@ libs:
   - origin: https://github.com/mongoose-os-libs/rpc-uart
   - origin: https://github.com/mongoose-os-libs/rpc-mqtt
   - origin: https://github.com/mongoose-os-libs/wifi
-  # - origin: https://github.com/mongoose-os-libs/http-server
   - origin: https://github.com/mongoose-os-libs/dns-sd
   - origin: https://github.com/mongoose-os-libs/pwm
   - origin: https://github.com/mongoose-os-libs/mjs
